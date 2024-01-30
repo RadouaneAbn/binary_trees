@@ -2,26 +2,22 @@
 #include <stdio.h>
 
 /**
- * binary_tree_nodes - gets the number of nodes
+ * binary_tree_size - measures the size of a binary tree
  *
- * @tree: a pointer to the parent
- * Return: the total number of nodes/leaves.
+ * @tree: a pointer to the root node of the tree to measure the size
+ * Return: the size of the @tree, 0 otherwise.
  **/
-
-size_t binary_tree_nodes(const binary_tree_t *tree)
+size_t binary_tree_size(const binary_tree_t *tree)
 {
-	size_t nodes = 0;
+	size_t left, right;
 
-	if (tree == NULL)
+	if (!tree)
 		return (0);
 
-	if (tree->left || tree->right)
-		nodes++;
+	left = binary_tree_size(tree->left);
+	right = binary_tree_size(tree->right);
 
-	nodes += binary_tree_nodes(tree->left);
-	nodes += binary_tree_nodes(tree->right);
-
-	return (nodes);
+	return (left + right + 1);
 }
 
 /**
@@ -73,8 +69,8 @@ size_t binary_tree_is_perfect(const binary_tree_t *tree)
 		return (0);
 
 	height = binary_tree_height(tree);
-	nodes = binary_tree_nodes(tree);
-	max_nodes = _pow(2, height) - 1;
+	nodes = binary_tree_size(tree);
+	max_nodes = _pow(2, height + 1) - 1;
 
 	return (nodes == max_nodes ? 1 : 0);
 }
