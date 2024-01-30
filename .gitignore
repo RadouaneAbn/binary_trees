@@ -1,6 +1,6 @@
 *.gch
 *.out
-main.c
+*-main.c
 *~*
 ~*
 *~
