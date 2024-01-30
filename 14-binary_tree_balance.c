@@ -1,4 +1,4 @@
- #include "binary_trees.h"
+#include "binary_trees.h"
 
 /**
  * height - measures the height of a binary tree
@@ -29,7 +29,7 @@ size_t height(const binary_tree_t *tree)
  **/
 int binary_tree_balance(const binary_tree_t *tree)
 {
-	int h_l = -1, h_r = -1, balance = 0;
+	int h_l = -1, h_r = -1;
 
 	if (!tree || (!tree->left && !tree->right))
 		return (0);
@@ -39,6 +39,5 @@ int binary_tree_balance(const binary_tree_t *tree)
 	if (tree->right)
 		h_r = binary_tree_height(tree->right);
 
-	balance = h_l - h_r;
-	return (balance);
+	return (h_l - h_r);
 }
