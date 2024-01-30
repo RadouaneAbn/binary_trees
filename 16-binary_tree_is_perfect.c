@@ -2,17 +2,24 @@
 #include <stdio.h>
 
 /**
- * depth - measures the depth of a node in a binary tree
+ * total_nodes - gets the number of nodes
  *
- * @tree: pointer to the node to measure the depth
- * Return: the depth, 0 otherwise.
+ * @parent: a pointer to the parent
+ * Return: the total number of nodes/leaves.
  **/
-size_t depth(const binary_tree_t *tree)
+int total_nodes(binary_tree_t *parent)
 {
-	if (!tree || !tree->parent)
+	int left = 0, right = 0;
+
+	if (!parent)
 		return (0);
 
-	return (binary_tree_depth(tree->parent) + 1);
+	if (parent->left)
+		left += 1 + total_nodes(parent->left);
+	if (parent->right)
+		right += 1 + total_nodes(parent->right);
+
+	return (right + left);
 }
 
 /**
@@ -26,10 +33,5 @@ size_t binary_tree_is_perfect(const binary_tree_t *tree)
 	if (!tree)
 		return (0);
 
-	if (!tree->left && !tree->right)
-		printf("leaf: %i, depth: %li\n", tree->n, depth(tree));
-
-	binary_tree_is_perfect(tree->left);
-	binary_tree_is_perfect(tree->right);
-	return (0);
+	return ((total_nodes(tree->left) - total_nodes(tree->right)) == 0 ? 1 : 0);
 }
