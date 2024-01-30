@@ -12,7 +12,7 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 {
 	binary_tree_t *f_an, *s_an;
 
-	if (!first || !second || !first->parent || !second->parent)
+	if (!first || !second)
 		return (NULL);
 
 	f_an = first->parent;
@@ -24,6 +24,6 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 		return (s_an);
 	else if (second == f_an)
 		return (f_an);
-	else
-		return (binary_trees_ancestor(first->parent, second->parent));
+
+	return (binary_trees_ancestor(first->parent, second->parent));
 }
