@@ -1,6 +1,4 @@
 #include "binary_trees.h"
-
-
 #define MAX 1 /* get the max value */
 #define MIN 0 /* get the min value */
 
