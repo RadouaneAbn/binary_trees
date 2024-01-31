@@ -50,10 +50,10 @@ int BST_check(const binary_tree_t *root)
 	if (!root)
 		return (1);
 
-	if (root->left && get_value(root->left, MAX) > root->n)
+	if (root->left && get_value(root->left, MAX) >= root->n)
 		return (0);
 
-	if (root->right && get_value(root->right, MIN) < root->n)
+	if (root->right && get_value(root->right, MIN) <= root->n)
 		return (0);
 
 	if (!BST_check(root->left) || !BST_check(root->right))
