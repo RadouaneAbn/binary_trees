@@ -56,7 +56,7 @@ bst_t *get_successor(bst_t *node)
 	if (node->left)
 		return (node->left);
 
-	return (node);
+	return (NULL);
 }
 
 /**
@@ -118,6 +118,14 @@ bst_t *bst_remove(bst_t *root, int value)
 		return (NULL);
 	parent = node->parent;
 	succ = get_successor(node);
+	if (!succ)
+	{
+		if (parent->left == node)
+			parent->left = NULL;
+		else
+			parent->right = NULL;
+		free(node);
+	}
 	if (!parent)
 		root = succ;
 
