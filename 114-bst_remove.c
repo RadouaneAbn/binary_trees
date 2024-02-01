@@ -126,10 +126,11 @@ bst_t *bst_remove(bst_t *root, int value)
 			parent->right = NULL;
 		free(node);
 	}
+    else
+	    remove(parent, node, succ);
 	if (!parent)
 		root = succ;
 
-	remove(parent, node, succ);
 
 	return (root);
 }
