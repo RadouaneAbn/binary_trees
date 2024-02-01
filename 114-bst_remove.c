@@ -115,7 +115,7 @@ bst_t *bst_remove(bst_t *root, int value)
 
 	node = bst_search(root, value);
 	if (!node)
-		return (root);
+		return (NULL);
 	parent = node->parent;
 	succ = get_successor(node);
 	if (!parent)
